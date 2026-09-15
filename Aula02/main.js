@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const {Sequelize, DataTypes} = require('sequelize')
 
-const sequelize = new Sequelize("pw3","root","",{
+const sequelize = new Sequelize("pw3","root","root",{
     host:"localhost",
     dialect:"mysql",
     logging:false
@@ -142,6 +142,47 @@ app.get("/users",(req,res)=>{
     })
 
 })
+
+app.post("/users/login",(req,res)=>{
+
+    if (!req.body) {
+        return res.status(400).json({ error: 'Body is required' });
+    }
+
+    const { login, password} = req.body;
+    
+    
+    let filedsNOTVALID = [];
+    for (const field of ['login', 'password']) {
+        if (!req.body[field]) {
+            filedsNOTVALID.push(field);
+        }
+    }
+
+    if (filedsNOTVALID.length > 0) {
+        return res.status(400).json({ error: `Fields not valid: ${filedsNOTVALID.join(', ')}` });
+    }
+
+    User.findOne({
+        where:{
+            login,
+            password
+        }
+    }).then((user)=>{
+        if(user){
+            return res.status(200).json(user);
+        }else{
+            return res.status(404).json({msg:"Usuario não encontrado"});
+        }
+    }).catch((e)=>{
+        const ret = {
+            msg : "Erro no banco de dados",
+            exp: e,
+        }
+        return res.status(500).json(ret);
+    })
+
+})  
 
 app.listen(port, () => {
     sequelize.authenticate().then(

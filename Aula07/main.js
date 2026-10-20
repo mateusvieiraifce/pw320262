@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors')
 const jwt = require("jsonwebtoken")
 const app = express();
-const port = 3002;
+const port = 3000;
 
 const sequelize = require('./models/Bd.js').sequelize;
 const {User} = require('./models/User.js');

@@ -10,7 +10,7 @@ const {User} = require('./models/User.js');
 const userController = require("./controller/UserController.js")
 const clienteController = require("./controller/ClienteController.js")
 const produtoController = require("./controller/ProdutoController.js")
-const servicoController = require("./controller/ServicoController.js")
+
 
 const SECRET ="MALHADAO"
 
@@ -106,6 +106,8 @@ app.post("/api/v1/users/first",(req,res)=>{
 app.use("/api/v1", verificaToken, require("./router/UserRouter.js"));
 app.use("/api/v1", verificaToken, require("./router/ClientRouter.js"));
 app.use("/api/v1", verificaToken, require("./router/ProdutoRouter.js"));
+app.use("/api/v1", verificaToken, require("./router/TiposProdutosRouter.js"));
+app.use("/api/v1", verificaToken, require("./router/ServicoRouter.js"));
 
 
 app.listen(port, () => {

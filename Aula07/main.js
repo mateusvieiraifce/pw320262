@@ -108,6 +108,9 @@ app.use("/api/v1", verificaToken, require("./router/ClientRouter.js"));
 app.use("/api/v1", verificaToken, require("./router/ProdutoRouter.js"));
 app.use("/api/v1", verificaToken, require("./router/TiposProdutosRouter.js"));
 app.use("/api/v1", verificaToken, require("./router/ServicoRouter.js"));
+app.use("/api/v1", verificaToken, require("./router/GarantiaRouter.js"));
+app.use("/api/v1", verificaToken, require("./router/ClientRouter.js"));
+app.use("/api/v1", verificaToken, require("./router/FornecedorRouter.js"));
 
 
 app.listen(port, () => {

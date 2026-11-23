@@ -10,6 +10,8 @@ const {User} = require('./models/User.js');
 const userController = require("./controller/UserController.js")
 const clienteController = require("./controller/ClienteController.js")
 const produtoController = require("./controller/ProdutoController.js")
+const servicoController = require("./controller/ServicoController.js")
+
 const SECRET ="MALHADAO"
 
 app.use(express.json());
